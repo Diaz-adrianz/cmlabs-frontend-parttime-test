@@ -6,6 +6,7 @@ import {
   ItemTitle,
 } from '@/components/atoms/item';
 import { Ingredient } from '@/types/ingredient.type';
+import { toSlug } from '@/utils/string';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ComponentProps } from 'react';
@@ -16,7 +17,7 @@ const IngredientItem = ({
 }: { item: Ingredient } & ComponentProps<typeof Item>) => {
   return (
     <Item {...props} asChild>
-      <Link href={`/ingredients/${item.strIngredient}`}>
+      <Link href={`/ingredients/${toSlug(item.strIngredient, '_')}`}>
         <ItemMedia variant="image">
           <Image
             src={item.strThumb}
