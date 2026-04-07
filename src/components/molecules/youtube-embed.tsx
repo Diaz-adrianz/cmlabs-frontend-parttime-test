@@ -23,7 +23,7 @@ const YoutubeEmbed = ({
   if (!id) return null;
 
   return (
-    <div className="relative aspect-video w-full overflow-hidden rounded-sm">
+    <div className="relative aspect-video w-full overflow-hidden rounded-xl">
       {!playing && (
         <PlayIcon className="pointer-events-none absolute top-1/2 left-1/2 z-10 size-16 -translate-x-1/2 -translate-y-1/2 fill-white text-white md:size-20" />
       )}

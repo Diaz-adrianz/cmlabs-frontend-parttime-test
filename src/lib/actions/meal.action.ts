@@ -9,13 +9,13 @@ async function getMealsByIngredient(
   ingredient: string
 ): Promise<ActionResponse<Meal[] | null>> {
   try {
-    const data = await api.get<{ meals: Meal[] }>(
+    const data = await api.get<{ meals: Meal[] | null }>(
       `/filter.php?i=${ingredient}`
     );
 
     return {
       status: true,
-      message: `${data.data.meals.length} meal(s) retrieved`,
+      message: `${data.data.meals?.length ?? 0} meal(s) retrieved`,
       data: data.data.meals,
     };
   } catch (error) {
@@ -27,11 +27,13 @@ async function getMealsByCategory(
   category: string
 ): Promise<ActionResponse<Meal[] | null>> {
   try {
-    const data = await api.get<{ meals: Meal[] }>(`/filter.php?c=${category}`);
+    const data = await api.get<{ meals: Meal[] | null }>(
+      `/filter.php?c=${category}`
+    );
 
     return {
       status: true,
-      message: `${data.data.meals.length} meal(s) retrieved`,
+      message: `${data.data.meals?.length} meal(s) retrieved`,
       data: data.data.meals,
     };
   } catch (error) {
