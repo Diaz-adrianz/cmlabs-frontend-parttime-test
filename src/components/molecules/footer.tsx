@@ -1,5 +1,5 @@
 import { ComponentProps } from 'react';
-import { cn } from '@/utils';
+import { cn } from '@/utils/misc';
 import CompanyData from '@/data/company.data';
 import { Button } from '@/components/atoms/button';
 import Link from 'next/link';

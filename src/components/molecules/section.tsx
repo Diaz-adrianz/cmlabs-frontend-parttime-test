@@ -1,4 +1,4 @@
-import { cn } from '@/utils/index';
+import { cn } from '@/utils/misc';
 import { ComponentProps } from 'react';
 
 const Section = ({
@@ -9,7 +9,7 @@ const Section = ({
   return (
     <section
       className={cn(
-        'mx-auto flex w-full max-w-6xl flex-col items-stretch px-6 py-24 sm:px-12',
+        'mx-auto flex w-full max-w-6xl flex-col items-stretch px-6 py-12 sm:px-12',
         className
       )}
       {...props}

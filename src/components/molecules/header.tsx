@@ -5,15 +5,17 @@ import { ComponentProps, useEffect, useRef, useState } from 'react';
 import { MenuIcon } from 'lucide-react';
 import Link from 'next/link';
 import { Sheet, SheetContent, SheetTitle } from '@/components/atoms/sheet';
-import { cn } from '@/utils';
+import { cn } from '@/utils/misc';
 import { Section } from './section';
 import CompanyData from '@/data/company.data';
 import Logo from './logo';
+import { usePathname } from 'next/navigation';
 
 const Links = CompanyData.menu.main.links;
 
 const Header = ({ className, ...props }: ComponentProps<'header'>) => {
   const [sheetOpen, setSheetOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className={cn('bg-background shadow-lg', className)} {...props}>
@@ -34,7 +36,12 @@ const Header = ({ className, ...props }: ComponentProps<'header'>) => {
         </div>
 
         {Links.map((link, i) => (
-          <Button key={i} variant={'link'} className="not-md:hidden" asChild>
+          <Button
+            key={i}
+            variant={pathname == link.href ? 'default' : 'link'}
+            className="not-md:hidden"
+            asChild
+          >
             <Link href={link.href}>{link.label}</Link>
           </Button>
         ))}
@@ -48,7 +55,7 @@ const Header = ({ className, ...props }: ComponentProps<'header'>) => {
             {Links.map((link, i) => (
               <Button
                 key={i}
-                variant={'link'}
+                variant={pathname == link.href ? 'default' : 'link'}
                 className="text-foreground"
                 size={'lg'}
                 asChild

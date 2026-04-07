@@ -1,4 +1,4 @@
-import { cn } from '@/utils';
+import { cn } from '@/utils/misc';
 import { ChefHat } from 'lucide-react';
 import React, { ComponentProps } from 'react';
 
