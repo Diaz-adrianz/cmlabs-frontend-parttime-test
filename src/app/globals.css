@@ -270,3 +270,7 @@
     @apply text-primary underline-offset-4 hover:underline;
   }
 }
+
+.yt-lite > .lty-playbtn {
+  display: none !important;
+}

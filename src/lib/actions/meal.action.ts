@@ -39,6 +39,28 @@ async function getMealsByCategory(
   }
 }
 
+async function getMealById(id: string): Promise<ActionResponse<Meal | null>> {
+  try {
+    const data = await api.get<{ meals: Meal[] }>(`/lookup.php?i=${id}`);
+
+    const item = data.data.meals?.at(0);
+    if (!item)
+      return {
+        status: false,
+        message: 'Meal not found',
+        data: null,
+      };
+
+    return {
+      status: true,
+      message: 'Meal retrieved',
+      data: item,
+    };
+  } catch (error) {
+    return errorResponseAction(error);
+  }
+}
+
 async function searchMeals(
   query: string
 ): Promise<ActionResponse<Meal[] | null>> {
@@ -56,4 +78,4 @@ async function searchMeals(
   }
 }
 
-export { getMealsByIngredient, getMealsByCategory, searchMeals };
+export { getMealsByIngredient, getMealsByCategory, getMealById, searchMeals };
