@@ -12,8 +12,8 @@ const CompanyData = {
           label: 'Ingredients',
         },
         {
-          href: '/search',
-          label: 'Search',
+          href: '/meals/by-letter?query=A',
+          label: 'Meals A-Z',
         },
       ],
     },

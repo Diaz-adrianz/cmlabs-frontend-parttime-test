@@ -32,7 +32,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontInter.variable} ${fontSourceSerif.variable} ${fontJetbrainsMono} h-full overflow-x-hidden scroll-smooth antialiased`}
+      className={`${fontInter.variable} ${fontSourceSerif.variable} ${fontJetbrainsMono} h-full overflow-x-hidden antialiased`}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <body className="flex min-h-svh flex-col items-stretch">
