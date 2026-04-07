@@ -1,6 +1,4 @@
 import moment from 'moment';
-// @ts-expect-error ignore
-import 'moment/dist/locale/id';
 
 export const now = () => {
   return moment();
