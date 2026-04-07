@@ -9,6 +9,10 @@ const CompanyData = {
       links: [
         {
           href: '/',
+          label: 'Home',
+        },
+        {
+          href: '/ingredients',
           label: 'Ingredients',
         },
         {
