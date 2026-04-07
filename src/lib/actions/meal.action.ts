@@ -23,6 +23,22 @@ async function getMealsByIngredient(
   }
 }
 
+async function getMealsByCategory(
+  category: string
+): Promise<ActionResponse<Meal[] | null>> {
+  try {
+    const data = await api.get<{ meals: Meal[] }>(`/filter.php?c=${category}`);
+
+    return {
+      status: true,
+      message: `${data.data.meals.length} meal(s) retrieved`,
+      data: data.data.meals,
+    };
+  } catch (error) {
+    return errorResponseAction(error);
+  }
+}
+
 async function searchMeals(
   query: string
 ): Promise<ActionResponse<Meal[] | null>> {
@@ -40,4 +56,4 @@ async function searchMeals(
   }
 }
 
-export { getMealsByIngredient, searchMeals };
+export { getMealsByIngredient, getMealsByCategory, searchMeals };
