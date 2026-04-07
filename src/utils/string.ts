@@ -1,10 +1,22 @@
 export const toSlug = (str: string, separator = '-'): string => {
-  return str
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, separator)
-    .replace(/^-+|-+$/g, '');
+  const escaped = separator.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+  return (
+    str
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, separator)
+      .replace(new RegExp(`^${escaped}+|${escaped}+$`, 'g'), '') || 'n-a'
+  );
+};
+
+export const fromSlug = (slug: string, separator = '-'): string => {
+  return slug
+    .split(separator)
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 };
 
 export const getRandomString = (length: number) => {
