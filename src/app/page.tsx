@@ -10,9 +10,7 @@ const page = async () => {
   return (
     <>
       <Section className="bg-primary/20 items-start">
-        <h1 className="typo-display text-primary">
-          Discover Meals You Will Love
-        </h1>
+        <h1 className="typo-display text-primary">See All Delicious Foods</h1>
         <p className="typo-body mb-6">
           Explore recipes by ingredient, category, or letter—all in one place.
         </p>
