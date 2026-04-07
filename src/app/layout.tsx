@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter, Source_Serif_4, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
+import { Header, HeaderStickyScroll } from '@/components/molecules/header';
+import { Footer } from '@/components/molecules/footer';
 
 const fontInter = Inter({
   variable: '--font-inter',
@@ -33,7 +35,13 @@ export default function RootLayout({
       className={`${fontInter.variable} ${fontSourceSerif.variable} ${fontJetbrainsMono} h-full overflow-x-hidden scroll-smooth antialiased`}
       suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-svh flex-col items-stretch">
+        <HeaderStickyScroll>
+          <Header />
+        </HeaderStickyScroll>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
