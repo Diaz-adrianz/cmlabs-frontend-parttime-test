@@ -6,17 +6,25 @@ import api from '../server/api.server';
 import { Meal } from '@/types/meal.type';
 
 async function getMealsByIngredient(
-  ingredient: string
+  ingredient: string,
+  query: string = ''
 ): Promise<ActionResponse<Meal[] | null>> {
   try {
     const data = await api.get<{ meals: Meal[] | null }>(
       `/filter.php?i=${ingredient}`
     );
+    const items = Array.isArray(data.data.meals) ? data.data.meals : [];
+
+    const q = query.trim().toLowerCase();
+    const filtered =
+      q.length > 0
+        ? items.filter((item) => item.strMeal.toLowerCase().includes(q))
+        : items;
 
     return {
       status: true,
-      message: `${data.data.meals?.length ?? 0} meal(s) retrieved`,
-      data: data.data.meals,
+      message: `${filtered.length} meal(s) retrieved`,
+      data: filtered,
     };
   } catch (error) {
     return errorResponseAction(error);
@@ -24,17 +32,25 @@ async function getMealsByIngredient(
 }
 
 async function getMealsByCategory(
-  category: string
+  category: string,
+  query: string = ''
 ): Promise<ActionResponse<Meal[] | null>> {
   try {
     const data = await api.get<{ meals: Meal[] | null }>(
       `/filter.php?c=${category}`
     );
+    const items = Array.isArray(data.data.meals) ? data.data.meals : [];
+
+    const q = query.trim().toLowerCase();
+    const filtered =
+      q.length > 0
+        ? items.filter((item) => item.strMeal.toLowerCase().includes(q))
+        : items;
 
     return {
       status: true,
-      message: `${data.data.meals?.length} meal(s) retrieved`,
-      data: data.data.meals,
+      message: `${filtered.length} meal(s) retrieved`,
+      data: filtered,
     };
   } catch (error) {
     return errorResponseAction(error);
